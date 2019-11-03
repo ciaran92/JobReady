@@ -1,0 +1,9 @@
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\bin\Debug\netstandard2.0\Monolith.Domain.deps.json
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\bin\Debug\netstandard2.0\Monolith.Domain.dll
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\bin\Debug\netstandard2.0\Monolith.Domain.pdb
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\obj\Debug\netstandard2.0\Monolith.Domain.csprojAssemblyReference.cache
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\obj\Debug\netstandard2.0\Monolith.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\obj\Debug\netstandard2.0\Monolith.Domain.AssemblyInfoInputs.cache
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\obj\Debug\netstandard2.0\Monolith.Domain.AssemblyInfo.cs
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\obj\Debug\netstandard2.0\Monolith.Domain.dll
+C:\Users\Ciaran\source\repos\Monolith\Monolith.Domain\obj\Debug\netstandard2.0\Monolith.Domain.pdb

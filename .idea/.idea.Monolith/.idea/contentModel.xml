@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Ciaran\.Rider2019.2\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Ciaran\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Monolith.-789247815.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Ciaran\source\repos\Monolith" t="IncludeFlat">
+      <e p="Monolith" t="IncludeRecursive">
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="AccountController.cs" t="Include" />
+          <e p="CourseController.cs" t="Include" />
+        </e>
+        <e p="Monolith.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Monolith.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="Test.cs" t="Include" />
+      </e>
+      <e p="Monolith.Core" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Monolith.Core.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="Monolith.Core.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="CourseRepository.cs" t="Include" />
+          <e p="Generic" t="Include">
+            <e p="IGenericRepository.cs" t="Include" />
+          </e>
+          <e p="ICourseRepository.cs" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="Authentication" t="Include">
+            <e p="AuthService.cs" t="Include" />
+          </e>
+          <e p="Course" t="Include">
+            <e p="CourseService.cs" t="Include" />
+          </e>
+          <e p="UserService.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Monolith.Domain" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BusinessObjects" t="Include">
+          <e p="Appuser.cs" t="Include" />
+          <e p="Course.cs" t="Include" />
+          <e p="Lecture.cs" t="Include" />
+          <e p="Topic.cs" t="Include" />
+        </e>
+        <e p="Context" t="Include">
+          <e p="PrimarydbContext.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IAuthService.cs" t="Include" />
+          <e p="ICourseService.cs" t="Include" />
+          <e p="IUserService.cs" t="Include" />
+        </e>
+        <e p="Mappers" t="Include">
+          <e p="CreateCourseModelToCourseMapper.cs" t="Include" />
+          <e p="SignupModelMapper.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="Course" t="Include">
+            <e p="CourseViewModel.cs" t="Include" />
+            <e p="CreateCourseModel.cs" t="Include" />
+            <e p="CreateCourseResponse.cs" t="Include" />
+          </e>
+          <e p="LoginModel.cs" t="Include" />
+          <e p="LoginResponse.cs" t="Include" />
+          <e p="SignupModel.cs" t="Include" />
+          <e p="SignUpResponse.cs" t="Include" />
+          <e p="Topic" t="Include">
+            <e p="CreateTopicModel.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Monolith.Domain.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="Monolith.Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Monolith.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
