@@ -44,7 +44,7 @@ namespace Monolith.Controllers
 
             if (response.Success)
             {
-                response.JwtToken = _authService.NewJwtToken();
+                response.JwtToken = _authService.NewJwtToken(model.Email);
                 return Ok(response);
             }
             

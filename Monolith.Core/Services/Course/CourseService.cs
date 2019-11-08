@@ -2,6 +2,7 @@
 using Monolith.Core.Repositories;
 using Monolith.Domain.Context;
 using Monolith.Domain.Interfaces;
+using Monolith.Domain.Mappers;
 using Monolith.Domain.Models.Course;
 
 namespace Monolith.Core.Services.Course
@@ -47,6 +48,22 @@ namespace Monolith.Core.Services.Course
                     CourseDescription = req.CourseDescription
                 }
             };
+        }
+
+        public Domain.BusinessObjects.Course GetCourse(int userId, int courseId)
+        {
+            var course = _context.Course
+                .Where(x => x.CourseId == courseId)
+                .FirstOrDefault(x => x.InstructorId == userId);
+            
+            return course;
+        }
+
+        public bool UpdateCourse(Domain.BusinessObjects.Course course, UpdateCourseRequest changes)
+        {
+            UpdateCourseToCourseMapper.Map(course, changes);
+
+            return _courseRepository.Save();
         }
     }
 }

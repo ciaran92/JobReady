@@ -3,5 +3,6 @@
     public class CreateTopicModel
     {
         public string Topicname { get; set; }
+        
     }
 }

@@ -11,6 +11,11 @@
         <e p="Controllers" t="Include">
           <e p="AccountController.cs" t="Include" />
           <e p="CourseController.cs" t="Include" />
+          <e p="LectureController.cs" t="Include" />
+          <e p="TopicController.cs" t="Include" />
+        </e>
+        <e p="Helpers" t="Include">
+          <e p="UnprocessableEntity.cs" t="Include" />
         </e>
         <e p="Monolith.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -40,9 +45,14 @@
         <e p="Repositories" t="Include">
           <e p="CourseRepository.cs" t="Include" />
           <e p="Generic" t="Include">
-            <e p="IGenericRepository.cs" t="Include" />
+            <e p="IRepositoryBase.cs" t="Include" />
+            <e p="RepositoryBase.cs" t="Include" />
           </e>
           <e p="ICourseRepository.cs" t="Include" />
+          <e p="ILectureRepository.cs" t="Include" />
+          <e p="ITopicRepository.cs" t="Include" />
+          <e p="LectureRepository.cs" t="Include" />
+          <e p="TopicRepository.cs" t="Include" />
         </e>
         <e p="Services" t="Include">
           <e p="Authentication" t="Include">
@@ -51,6 +61,8 @@
           <e p="Course" t="Include">
             <e p="CourseService.cs" t="Include" />
           </e>
+          <e p="LectureService.cs" t="Include" />
+          <e p="TopicService.cs" t="Include" />
           <e p="UserService.cs" t="Include" />
         </e>
       </e>
@@ -68,17 +80,24 @@
         <e p="Interfaces" t="Include">
           <e p="IAuthService.cs" t="Include" />
           <e p="ICourseService.cs" t="Include" />
+          <e p="ILectureService.cs" t="Include" />
+          <e p="ITopicService.cs" t="Include" />
           <e p="IUserService.cs" t="Include" />
         </e>
         <e p="Mappers" t="Include">
           <e p="CreateCourseModelToCourseMapper.cs" t="Include" />
           <e p="SignupModelMapper.cs" t="Include" />
+          <e p="UpdateCourseToCourseMapper.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="Course" t="Include">
             <e p="CourseViewModel.cs" t="Include" />
             <e p="CreateCourseModel.cs" t="Include" />
             <e p="CreateCourseResponse.cs" t="Include" />
+            <e p="UpdateCourseRequest.cs" t="Include" />
+          </e>
+          <e p="Lecture" t="Include">
+            <e p="CreateLectureModel.cs" t="Include" />
           </e>
           <e p="LoginModel.cs" t="Include" />
           <e p="LoginResponse.cs" t="Include" />

@@ -2,7 +2,7 @@
 {
     public interface IAuthService
     {
-        string NewJwtToken();
+        string NewJwtToken(string email);
         string NewRefreshToken();
     }
 }

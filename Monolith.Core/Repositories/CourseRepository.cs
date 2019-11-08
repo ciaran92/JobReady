@@ -21,9 +21,9 @@ namespace Monolith.Core.Repositories
             _context.AddAsync(entity);
         }
 
-        public void Save()
+        public bool Save()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges() > 0;
         }
 
         public void SaveAsync()

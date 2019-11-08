@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Monolith.Core.Repositories;
 using Monolith.Core.Services;
 using Monolith.Core.Services.Authentication;
 using Monolith.Core.Services.Course;
@@ -35,8 +36,11 @@ namespace Monolith
             services.AddEntityFrameworkNpgsql().AddDbContext<PrimarydbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("primary_db_conn")));
             
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITopicService, TopicService>();
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ITopicRepository, TopicRepository>();
+            services.AddScoped<ILectureService, LectureService>();
             
             services.AddAuthentication(GetAuthenticationOptions).AddJwtBearer(GetJwtBearerOptions);
             

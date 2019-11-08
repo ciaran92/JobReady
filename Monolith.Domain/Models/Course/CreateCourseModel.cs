@@ -9,8 +9,5 @@ namespace Monolith.Domain.Models.Course
         public string CourseName { get; set; }
         public string CourseDescription { get; set; }
         public int? InstructorId { get; set; }
-
-        public ICollection<CreateTopicModel> Topic { get; set; }
-            = new List<CreateTopicModel>();
     }
 }

@@ -11,17 +11,22 @@ namespace Monolith.Core.Services.Authentication
     public class AuthService : IAuthService
     {
         // TODO: move key, issuer & audience to appSettings file
-        public string NewJwtToken()
+        public string NewJwtToken(string email)
         {
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Email, email),
+            };
+            
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretkeySuperDoopeSecretNeverBeCracked147468gnvjhfnd"));
             var signInCred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             
             var token = new JwtSecurityToken
             (
                 issuer: "http://localhost:5001",
-                audience: "https://jobready.com",
+                audience: "http://localhost:5001",
                 expires: DateTime.Now.AddMinutes(30),
-                claims: null,
+                claims: claims,
                 signingCredentials: signInCred
             );
 
