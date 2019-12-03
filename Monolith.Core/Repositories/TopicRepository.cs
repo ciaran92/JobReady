@@ -1,6 +1,8 @@
-﻿using Monolith.Core.Repositories.Generic;
+﻿using System.Collections.Generic;
+using Monolith.Core.Repositories.Generic;
 using Monolith.Domain.BusinessObjects;
 using Monolith.Domain.Context;
+using System.Linq;
 
 namespace Monolith.Core.Repositories
 {
@@ -11,6 +13,18 @@ namespace Monolith.Core.Repositories
         public TopicRepository(PrimarydbContext context) : base(context)
         {
             _context = context;
+        }
+
+        public bool TopicExists(int topicId)
+        {
+            return _context.Topic.Any(x => x.Topicid == topicId);
+        }
+
+        public List<Topic> GetTopicsForCourse(int courseId)
+        {
+            var topics = _context.Topic.Where(x => x.Courseid == courseId).ToList();
+
+            return topics;
         }
     }
 }

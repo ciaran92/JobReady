@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Monolith.Domain.BusinessObjects;
 using Monolith.Domain.Interfaces;
 using Monolith.Domain.Mappers;
 using Monolith.Domain.Models.Course;
@@ -20,8 +22,29 @@ namespace Monolith.Controllers
         {
             _courseService = courseService;
         }
+
+        [HttpGet("UsersCourses/{id}")]
+        public IActionResult GetUsersCreatedCourses(int id)
+        {
+            var courses = _courseService.GetOwnedCourses(id);
+
+            return Ok(courses);
+        }
+
+        [HttpGet("GetCourseDetails/{id}")]
+        public IActionResult GetCourseDetails(int id)
+        {
+            var details = _courseService.GetCourseDetails(id);
+            
+            if (details == null)
+            {
+                return BadRequest("Course not found");
+            }
+            
+            return Ok(details);
+        }
         
-        [Authorize]
+        //[Authorize]
         [HttpPost("create-course")]
         public IActionResult CreateCourse([FromBody] CreateCourseModel model)
         {
@@ -43,10 +66,30 @@ namespace Monolith.Controllers
             return Ok(response);
         }
 
+        /*[HttpPatch("{courseId}")]
+        public IActionResult PartiallyUpdateCourse(int courseId, [FromBody] JsonPatchDocument<Course> patchDocument)
+        {
+            if (patchDocument == null)
+            {
+                return BadRequest();
+            }
+
+            var course = _courseService.GetCourse(courseId);
+            patchDocument.ApplyTo(course);
+
+            var req = new UpdateCourseRequest()
+            {
+                CourseName = course.CourseName,
+                CourseDescription = course.CourseDescription
+            };
+
+            patchRequest.ApplyTo(req);
+        }*/
+
         [HttpPut]
         public IActionResult UpdateCourse(int userId, int courseId, [FromBody] UpdateCourseRequest changes)
         {
-            if (changes == null)
+            /*if (changes == null)
             {
                 return BadRequest();
             }
@@ -56,7 +99,7 @@ namespace Monolith.Controllers
                 return new UnprocessableEntity(ModelState);
             }
 
-            var course = _courseService.GetCourse(userId, courseId);
+            var course = _courseService.GetCourseDetails(courseId);
             
             if (course == null)
             {
@@ -66,7 +109,7 @@ namespace Monolith.Controllers
             if (!_courseService.UpdateCourse(course, changes))
             {
                 throw new Exception($"Update on Course {courseId} for user {userId} failed to Save Changes");
-            }
+            }*/
 
             return NoContent();
         }

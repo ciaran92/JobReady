@@ -87,11 +87,13 @@
         <e p="Mappers" t="Include">
           <e p="CreateCourseModelToCourseMapper.cs" t="Include" />
           <e p="SignupModelMapper.cs" t="Include" />
+          <e p="TopicToTopicDto.cs" t="Include" />
           <e p="UpdateCourseToCourseMapper.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
           <e p="Course" t="Include">
-            <e p="CourseViewModel.cs" t="Include" />
+            <e p="CourseDetailsViewModel.cs" t="Include" />
+            <e p="CourseListViewModel.cs" t="Include" />
             <e p="CreateCourseModel.cs" t="Include" />
             <e p="CreateCourseResponse.cs" t="Include" />
             <e p="UpdateCourseRequest.cs" t="Include" />
@@ -105,6 +107,7 @@
           <e p="SignUpResponse.cs" t="Include" />
           <e p="Topic" t="Include">
             <e p="CreateTopicModel.cs" t="Include" />
+            <e p="TopicDto.cs" t="Include" />
           </e>
         </e>
         <e p="Monolith.Domain.csproj" t="IncludeRecursive" />

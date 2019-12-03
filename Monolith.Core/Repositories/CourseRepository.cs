@@ -1,39 +1,28 @@
-﻿using Monolith.Domain.BusinessObjects;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Monolith.Core.Repositories.Generic;
+using Monolith.Domain.BusinessObjects;
 using Monolith.Domain.Context;
 
 namespace Monolith.Core.Repositories
 {
-    public class CourseRepository : ICourseRepository<Course>
+    public class CourseRepository : RepositoryBase<Course>, ICourseRepository
     {
         private readonly PrimarydbContext _context;
         
-        public CourseRepository(PrimarydbContext context)
+        public CourseRepository(PrimarydbContext context) : base(context)
         {
             _context = context;
         }
-        public void Add(Course entity)
+
+        public bool CourseExists(int courseId)
         {
-            _context.Add(entity);
+            return _context.Course.Any(x => x.CourseId == courseId);
         }
 
-        public void AddAsync(Course entity)
+        public List<Course> GetAllCourses(int instructorId)
         {
-            _context.AddAsync(entity);
-        }
-
-        public bool Save()
-        {
-            return _context.SaveChanges() > 0;
-        }
-
-        public void SaveAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Course GetById(int id)
-        {
-            throw new System.NotImplementedException();
+            return _context.Course.Where(c => c.InstructorId == instructorId).ToList();
         }
     }
 }

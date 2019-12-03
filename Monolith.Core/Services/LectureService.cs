@@ -12,27 +12,28 @@ namespace Monolith.Core.Services
     public class LectureService : ILectureService
     {
         private readonly PrimarydbContext _context;
-        private readonly IRepositoryBase<Lecture> _lectureRepository;
+        private readonly ITopicRepository _topicRepository;
+        private readonly ILectureRepository _lectureRepository;
+        //private readonly ICourseRepository _courseRepository;
         
-        public LectureService(PrimarydbContext context)
+        public LectureService(PrimarydbContext context, ILectureRepository lectureRepository, ITopicRepository topicRepository)
         {
             _context = context;
-            _lectureRepository = new LectureRepository(context);
+            _lectureRepository = lectureRepository;
+            _topicRepository = topicRepository;
         }
         
-        public bool CreateLecture(int topicId, List<CreateLectureModel> lecturesForCreation)
+        public bool CreateLecture(int topicId, List<CreateLectureModel> lectureModel)
         {
-            var topic = _context.Topic.Any(x => x.Topicid == topicId);
-
-            if (topic)
+            if (_topicRepository.TopicExists(topicId))
             {
                 var lectures = new List<Lecture>();
 
-                foreach (var l in lecturesForCreation)
+                foreach (var model in lectureModel)
                 {
                     var lecture = new Lecture
                     {
-                        Lecturename = l.Lecturename,
+                        Lecturename = model.Lecturename,
                         Topicid = topicId
                     };
 

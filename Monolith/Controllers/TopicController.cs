@@ -10,10 +10,25 @@ namespace Monolith.Controllers
     public class TopicController : ControllerBase
     {
         private readonly ITopicService _topicService;
+        private readonly ICourseService _courseService;
         
-        public TopicController(ITopicService topicService)
+        public TopicController(ITopicService topicService, ICourseService courseService)
         {
             _topicService = topicService;
+            _courseService = courseService;
+        }
+
+        [HttpGet]
+        public IActionResult GetTopics(int courseId)
+        {
+            var topics = _courseService.GetTopics(courseId);
+
+            if (topics == null)
+            {
+                return BadRequest();
+            }
+            
+            return Ok(topics);
         }
         
         [HttpPost]

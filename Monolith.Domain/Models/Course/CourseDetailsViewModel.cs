@@ -1,6 +1,6 @@
 ﻿namespace Monolith.Domain.Models.Course
 {
-    public class CourseViewModel
+    public class CourseDetailsViewModel
     {
         public int CourseId { get; set; }
         public string CourseName { get; set; }

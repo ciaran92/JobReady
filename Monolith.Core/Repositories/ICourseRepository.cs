@@ -1,15 +1,12 @@
-﻿using Monolith.Domain.BusinessObjects;
+﻿using System.Collections.Generic;
+using Monolith.Core.Repositories.Generic;
+using Monolith.Domain.BusinessObjects;
 
 namespace Monolith.Core.Repositories
 {
-    public interface ICourseRepository<T> where T: class
+    public interface ICourseRepository : IRepositoryBase<Course>
     {
-
-        void Add(T entity);
-        void AddAsync(T entity);
-        bool Save();
-        void SaveAsync();
-
-        T GetById(int id);
+        bool CourseExists(int courseId);
+        List<Course> GetAllCourses(int userId);
     }
 }
