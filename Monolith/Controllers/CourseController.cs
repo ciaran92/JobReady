@@ -23,8 +23,8 @@ namespace Monolith.Controllers
             _courseService = courseService;
         }
 
-        [HttpGet("UsersCourses/{id}")]
-        public IActionResult GetUsersCreatedCourses(int id)
+        [HttpGet("InstructorDashboard/{id}")]
+        public IActionResult GetInstructorDashboard(int id)
         {
             var courses = _courseService.GetOwnedCourses(id);
 
