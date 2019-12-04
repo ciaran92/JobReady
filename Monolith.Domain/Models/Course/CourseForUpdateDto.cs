@@ -2,7 +2,7 @@
 
 namespace Monolith.Domain.Models.Course
 {
-    public class UpdateCourseRequest
+    public class CourseForUpdateDto
     {
         [Required(ErrorMessage = "Course Name is required")]
         [MaxLength(255, ErrorMessage = "Course Name can have no more than 255 characters")]

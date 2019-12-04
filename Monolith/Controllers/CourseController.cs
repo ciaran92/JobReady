@@ -66,28 +66,32 @@ namespace Monolith.Controllers
             return Ok(response);
         }
 
-        /*[HttpPatch("{courseId}")]
-        public IActionResult PartiallyUpdateCourse(int courseId, [FromBody] JsonPatchDocument<Course> patchDocument)
+        [HttpPatch("{courseId}")]
+        public IActionResult PartiallyUpdateCourse(int courseId, [FromBody] JsonPatchDocument<CourseForUpdateDto> patchDocument)
         {
             if (patchDocument == null)
             {
                 return BadRequest();
             }
 
-            var course = _courseService.GetCourse(courseId);
-            patchDocument.ApplyTo(course);
+            // TODO: Get the userId from the bearer token claims
+            var course = _courseService.GetCourseForInstructor(7, courseId);
 
-            var req = new UpdateCourseRequest()
+            var courseToPatch = new CourseForUpdateDto()
             {
                 CourseName = course.CourseName,
                 CourseDescription = course.CourseDescription
             };
+            
+            patchDocument.ApplyTo(courseToPatch);
 
-            patchRequest.ApplyTo(req);
-        }*/
+            _courseService.UpdateCourse(course, courseToPatch);
+
+            return NoContent();
+        }
 
         [HttpPut]
-        public IActionResult UpdateCourse(int userId, int courseId, [FromBody] UpdateCourseRequest changes)
+        public IActionResult UpdateCourse(int userId, int courseId, [FromBody] CourseForUpdateDto changes)
         {
             /*if (changes == null)
             {
