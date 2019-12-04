@@ -115,14 +115,15 @@ namespace Monolith.Core.Services.Course
             
             return null;
         }
-        
-        public Domain.BusinessObjects.Course GetCourse(int courseId)
+
+        public Domain.BusinessObjects.Course GetCourseForInstructor(int instructorId, int courseId)
         {
-            var course = _context.Course.FirstOrDefault(x => x.CourseId == courseId);
+            var course = _context.Course.Where(x => x.InstructorId == instructorId)
+                                        .FirstOrDefault(x => x.CourseId == courseId);
             return course ?? null;
         }
 
-        public bool UpdateCourse(Domain.BusinessObjects.Course course, UpdateCourseRequest changes)
+        public bool UpdateCourse(Domain.BusinessObjects.Course course, CourseForUpdateDto changes)
         {
             UpdateCourseToCourseMapper.Map(course, changes);
 

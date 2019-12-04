@@ -93,10 +93,10 @@
         <e p="Models" t="Include">
           <e p="Course" t="Include">
             <e p="CourseDetailsViewModel.cs" t="Include" />
+            <e p="CourseForUpdateDto.cs" t="Include" />
             <e p="CourseListViewModel.cs" t="Include" />
             <e p="CreateCourseModel.cs" t="Include" />
             <e p="CreateCourseResponse.cs" t="Include" />
-            <e p="UpdateCourseRequest.cs" t="Include" />
           </e>
           <e p="Lecture" t="Include">
             <e p="CreateLectureModel.cs" t="Include" />
