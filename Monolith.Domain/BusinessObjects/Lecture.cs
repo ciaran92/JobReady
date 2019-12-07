@@ -5,9 +5,9 @@ namespace Monolith.Domain.BusinessObjects
 {
     public class Lecture
     {
-        public int Lectureid { get; set; }
-        public int Topicid { get; set; }
-        public string Lecturename { get; set; }
+        public int LectureId { get; set; }
+        public int TopicId { get; set; }
+        public string LectureName { get; set; }
 
         public virtual Topic Topic { get; set; }
     }

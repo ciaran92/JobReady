@@ -16,7 +16,7 @@ namespace Monolith.Domain.BusinessObjects
         public int? Rating { get; set; }
         public int? InstructorId { get; set; }
 
-        public virtual Appuser Instructor { get; set; }
+        public virtual AppUser Instructor { get; set; }
         public virtual ICollection<Topic> Topic { get; set; }
     }
 }

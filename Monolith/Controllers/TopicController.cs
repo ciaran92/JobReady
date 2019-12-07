@@ -32,7 +32,8 @@ namespace Monolith.Controllers
         }
         
         [HttpPost]
-        public IActionResult CreateTopic(int courseId, [FromBody] List<CreateTopicModel> request)
+        [Route("new/{courseId}")]
+        public IActionResult CreateTopic(int courseId, [FromBody] CreateTopicRequest request)
         {
             if (!ModelState.IsValid)
             {
