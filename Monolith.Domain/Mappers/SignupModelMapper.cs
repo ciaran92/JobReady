@@ -5,12 +5,12 @@ namespace Monolith.Domain.Mappers
 {
     public static class SignupModelToUsers
     {
-        public static Appuser Map(SignupModel model)
+        public static AppUser Map(SignupModel model)
         {
-            return new Appuser
+            return new AppUser
             {
-                Firstname = model.Firstname,
-                Lastname = model.Lastname,
+                FirstName = model.Firstname,
+                LastName = model.Lastname,
                 Email = model.Email,
                 Password = model.Password
             };

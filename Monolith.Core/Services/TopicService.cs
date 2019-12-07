@@ -20,26 +20,22 @@ namespace Monolith.Core.Services
             _topicRepository = new TopicRepository(context);
         }
         
-        public bool CreateTopic(int courseId, List<CreateTopicModel> topicsForCreation)
+        public bool CreateTopic(int courseId, CreateTopicRequest request)
         {
             var course = _context.Course.Any(x => x.CourseId == courseId);
 
             if (course)
             {
-                var topics = new List<Topic>();
-
-                foreach (var newTopic in topicsForCreation)
+                var topic = new Topic
                 {
-                    var topic = new Topic
-                    {
-                        Topicname = newTopic.Topicname,
-                        Courseid = courseId
-                    };
+                    CourseId = courseId,
+                    TopicName = request.TopicName,
+                    TopicDescription = request.TopicDescription,
+                    TopicOrder = request.TopicOrder,
+                    CreatedOn = DateTime.Now
+                };
 
-                    _topicRepository.Add(topic);
-                    topics.Add(topic);
-                }
-
+                _topicRepository.Add(topic);
                 return _topicRepository.Save();
             }
 

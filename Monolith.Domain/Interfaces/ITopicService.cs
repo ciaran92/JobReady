@@ -7,6 +7,6 @@ namespace Monolith.Domain.Interfaces
     public interface ITopicService
     {
 
-        bool CreateTopic(int courseId, List<CreateTopicModel> request);
+        bool CreateTopic(int courseId, CreateTopicRequest request);
     }
 }

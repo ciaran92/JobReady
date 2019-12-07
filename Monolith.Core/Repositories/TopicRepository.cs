@@ -17,12 +17,12 @@ namespace Monolith.Core.Repositories
 
         public bool TopicExists(int topicId)
         {
-            return _context.Topic.Any(x => x.Topicid == topicId);
+            return _context.Topic.Any(x => x.TopicId == topicId);
         }
 
         public List<Topic> GetTopicsForCourse(int courseId)
         {
-            var topics = _context.Topic.Where(x => x.Courseid == courseId).ToList();
+            var topics = _context.Topic.Where(x => x.CourseId == courseId).ToList();
 
             return topics;
         }
