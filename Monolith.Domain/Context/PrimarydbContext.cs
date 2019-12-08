@@ -12,7 +12,7 @@ namespace Monolith.Domain.Context
         {
         }
 
-        public virtual DbSet<Appuser> Appuser { get; set; }
+        public virtual DbSet<AppUser> AppUser { get; set; }
         public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<Lecture> Lecture { get; set; }
         public virtual DbSet<Topic> Topic { get; set; }
@@ -29,28 +29,28 @@ namespace Monolith.Domain.Context
         {
             modelBuilder.HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
-            modelBuilder.Entity<Appuser>(entity =>
+            modelBuilder.Entity<AppUser>(entity =>
             {
-                entity.HasKey(e => e.Userid)
+                entity.HasKey(e => e.UserId)
                     .HasName("appuser_pkey");
 
                 entity.ToTable("appuser");
 
-                entity.Property(e => e.Userid).HasColumnName("userid");
+                entity.Property(e => e.UserId).HasColumnName("userid");
 
                 entity.Property(e => e.Email)
                     .HasColumnName("email")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Firstname)
+                entity.Property(e => e.FirstName)
                     .HasColumnName("firstname")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Instructorrating).HasColumnName("instructorrating");
+                entity.Property(e => e.InstructorRating).HasColumnName("instructorrating");
                 
-                entity.Property(e => e.Isapproved).HasColumnName("isapproved");
+                entity.Property(e => e.IsApproved).HasColumnName("isapproved");
 
-                entity.Property(e => e.Lastname)
+                entity.Property(e => e.LastName)
                     .HasColumnName("lastname")
                     .HasMaxLength(255);
 
@@ -89,17 +89,17 @@ namespace Monolith.Domain.Context
             {
                 entity.ToTable("lecture");
 
-                entity.Property(e => e.Lectureid).HasColumnName("lectureid");
+                entity.Property(e => e.LectureId).HasColumnName("lectureid");
 
-                entity.Property(e => e.Lecturename)
+                entity.Property(e => e.LectureName)
                     .HasColumnName("lecturename")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Topicid).HasColumnName("topicid");
+                entity.Property(e => e.TopicId).HasColumnName("topicid");
 
                 entity.HasOne(d => d.Topic)
                     .WithMany(p => p.Lecture)
-                    .HasForeignKey(d => d.Topicid)
+                    .HasForeignKey(d => d.TopicId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("lecture_topicid_fkey");
             });
@@ -108,17 +108,25 @@ namespace Monolith.Domain.Context
             {
                 entity.ToTable("topic");
 
-                entity.Property(e => e.Topicid).HasColumnName("topicid");
+                entity.Property(e => e.TopicId).HasColumnName("topicid");
 
-                entity.Property(e => e.Courseid).HasColumnName("courseid");
+                entity.Property(e => e.CourseId).HasColumnName("courseid");
 
-                entity.Property(e => e.Topicname)
+                entity.Property(e => e.CreatedOn).HasColumnName("createdon");
+
+                entity.Property(e => e.TopicOrder).HasColumnName("topicorder");
+
+                entity.Property(e => e.TopicDescription)
+                    .HasColumnName("topicdescription")
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.TopicName)
                     .HasColumnName("topicname")
                     .HasMaxLength(255);
 
                 entity.HasOne(d => d.Course)
                     .WithMany(p => p.Topic)
-                    .HasForeignKey(d => d.Courseid)
+                    .HasForeignKey(d => d.CourseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("topic_courseid_fkey");
             });

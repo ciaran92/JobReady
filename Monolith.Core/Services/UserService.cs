@@ -22,7 +22,7 @@ namespace Monolith.Core.Services
         
         public SignUpResponse SignupUser(SignupModel model)
         {
-            bool userExists = _context.Appuser.Select(x => x.Email == model.Email).FirstOrDefault();
+            bool userExists = _context.AppUser.Select(x => x.Email == model.Email).FirstOrDefault();
             
             if (userExists)
             {
@@ -35,7 +35,7 @@ namespace Monolith.Core.Services
             user.Password = HashPassword(user.Password, user.Salt);
             
             // Save to the database
-            _context.Appuser.Add(user);
+            _context.AppUser.Add(user);
             _context.SaveChanges();
             
             return new SignUpResponse
@@ -47,7 +47,7 @@ namespace Monolith.Core.Services
 
         public LoginResponse Login(LoginModel model)
         {
-            var user = _context.Appuser.SingleOrDefault(x => x.Email == model.Email);
+            var user = _context.AppUser.SingleOrDefault(x => x.Email == model.Email);
             
             if (user == null)
             {

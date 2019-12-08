@@ -41,32 +41,6 @@ namespace Monolith.Core.Services.Course
             return courses;
         }
 
-        public List<TopicDto> GetTopics(int courseId)
-        {
-            // check the course exists
-            if (!_courseRepository.CourseExists(courseId))
-            {
-                return null;
-            }
-            
-            var topics = _topicRepository.GetTopicsForCourse(courseId);
-
-            if (topics == null)
-            {
-                return null;
-            }
-            
-            var topicDtos = new List<TopicDto>();
-            
-            // Map to topic response model
-            foreach (var topic in topics)
-            {
-                topicDtos.Add(TopicToTopicDto.Map(topic));
-            }
-            
-            return topicDtos;
-        }
-
         public CreateCourseResponse CreateCourse(Domain.BusinessObjects.Course req)
         {
             

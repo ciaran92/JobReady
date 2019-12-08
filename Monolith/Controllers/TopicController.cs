@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Monolith.Domain.Interfaces;
 using Monolith.Domain.Models.Topic;
@@ -10,18 +11,17 @@ namespace Monolith.Controllers
     public class TopicController : ControllerBase
     {
         private readonly ITopicService _topicService;
-        private readonly ICourseService _courseService;
         
-        public TopicController(ITopicService topicService, ICourseService courseService)
+        public TopicController(ITopicService topicService)
         {
             _topicService = topicService;
-            _courseService = courseService;
         }
 
         [HttpGet]
-        public IActionResult GetTopics(int courseId)
+        [Route("{courseId}")]
+        public ActionResult<IEnumerable<TopicDto>> GetTopics(int courseId)
         {
-            var topics = _courseService.GetTopics(courseId);
+            var topics = _topicService.GetTopicsForCourse(courseId);
 
             if (topics == null)
             {
@@ -32,7 +32,8 @@ namespace Monolith.Controllers
         }
         
         [HttpPost]
-        public IActionResult CreateTopic(int courseId, [FromBody] List<CreateTopicModel> request)
+        [Route("new/{courseId}")]
+        public ActionResult<IEnumerable<TopicDto>> CreateTopic(int courseId, [FromBody] CreateTopicRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -40,13 +41,16 @@ namespace Monolith.Controllers
             }
 
             var response = _topicService.CreateTopic(courseId, request);
-            return response? (IActionResult) Ok() : BadRequest();
+
+            if (!response) return BadRequest();
+            
+            var topics = _topicService.GetTopicsForCourse(courseId);
+            return Ok(topics);
         }
 
         [HttpPut]
         public IActionResult UpdateTopic()
         {
-
             return null;
         }
     }

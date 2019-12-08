@@ -106,7 +106,7 @@
           <e p="SignupModel.cs" t="Include" />
           <e p="SignUpResponse.cs" t="Include" />
           <e p="Topic" t="Include">
-            <e p="CreateTopicModel.cs" t="Include" />
+            <e p="CreateTopicRequest.cs" t="Include" />
             <e p="TopicDto.cs" t="Include" />
           </e>
         </e>

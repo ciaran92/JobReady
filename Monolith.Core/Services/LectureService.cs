@@ -33,8 +33,8 @@ namespace Monolith.Core.Services
                 {
                     var lecture = new Lecture
                     {
-                        Lecturename = model.Lecturename,
-                        Topicid = topicId
+                        LectureName = model.Lecturename,
+                        TopicId = topicId
                     };
 
                     _lectureRepository.Add(lecture);
