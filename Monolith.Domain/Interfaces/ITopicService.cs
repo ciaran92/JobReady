@@ -6,7 +6,7 @@ namespace Monolith.Domain.Interfaces
 {
     public interface ITopicService
     {
-
+        IEnumerable<TopicDto> GetTopicsForCourse(int courseId);
         bool CreateTopic(int courseId, CreateTopicRequest request);
     }
 }

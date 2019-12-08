@@ -2,7 +2,9 @@
 {
     public class TopicDto
     {
-        public int Topicid { get; set; }
-        public string Topicname { get; set; }
+        public int TopicId { get; set; }
+        public string TopicName { get; set; }
+        public string TopicDescription { get; set; }
+        public int TopicOrder { get; set; }
     }
 }

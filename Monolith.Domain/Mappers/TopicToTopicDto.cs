@@ -9,8 +9,8 @@ namespace Monolith.Domain.Mappers
         {
             return new TopicDto()
             {
-                Topicid = topic.TopicId,
-                Topicname = topic.TopicName
+                TopicId = topic.TopicId,
+                TopicName = topic.TopicName
             };
         }
     }
