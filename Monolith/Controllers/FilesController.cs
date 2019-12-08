@@ -11,6 +11,8 @@ namespace Monolith.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
+        // TODO: move these bucket names to appSettings file
+        private const string ThumbnailImageBucket = "jrthumbnails";
         private readonly IFilesRepository _filesRepository;
         
         public FilesController(IFilesRepository filesRepository)
@@ -19,23 +21,22 @@ namespace Monolith.Controllers
         }
 
         [HttpPost]
-        [Route("upload")]
-        public async Task<ActionResult<UploadFileResponse>> UploadFiles(IList<IFormFile> formFiles)
+        [Route("upload/{courseId}")]
+        public async Task<ActionResult<UploadFileResponse>> UploadThumbnailImage(IFormFile file, int courseId)
         {
-            if (formFiles == null)
+            if (file == null)
             {
                 return BadRequest("The request doesn't contain any files to be uploaded.");
             }
-
-            string bucketName = "jrthumbnails";
-            var response = await _filesRepository.UploadFiles(bucketName, formFiles);
+            
+            var response = await _filesRepository.UploadFiles(ThumbnailImageBucket, file);
 
             if (response == null)
             {
                 return BadRequest();
             }
 
-            return Ok(response);
+            return Ok();
         }
         
     }

@@ -19,38 +19,35 @@ namespace Monolith.Core.Repositories
             _s3Client = s3Client;
         }
 
-        public async Task<UploadFileResponse> UploadFiles(string bucketName, IList<IFormFile> files)
+        public async Task<UploadFileResponse> UploadFiles(string bucketName, IFormFile file)
         {
             var response = new List<string>();
 
-            foreach (var file in files)
+            string name = file.FileName;
+            string newFileName;
+            var date = DateTime.Now;
+            newFileName = date + "_100236";
+            var uploadRequest = new TransferUtilityUploadRequest
             {
-                string name = file.FileName;
-                string newFileName;
-                var date = DateTime.Now;
-                newFileName = date + "_100236";
-                var uploadRequest = new TransferUtilityUploadRequest
-                {
-                    InputStream = file.OpenReadStream(),
-                    Key = newFileName,
-                    BucketName = bucketName,
-                    CannedACL = S3CannedACL.NoACL
-                };
+                InputStream = file.OpenReadStream(),
+                Key = newFileName,
+                BucketName = bucketName,
+                CannedACL = S3CannedACL.NoACL
+            };
 
-                using (var fileTransferUtility = new TransferUtility(_s3Client))
-                {
-                    await fileTransferUtility.UploadAsync(uploadRequest);
-                }
+            using (var fileTransferUtility = new TransferUtility(_s3Client))
+            {
+                await fileTransferUtility.UploadAsync(uploadRequest);
+            }
 
-                var expiryUrlRequest = new GetPreSignedUrlRequest
-                {
-                    BucketName = bucketName,
-                    Key = file.FileName,
-                    Expires = DateTime.Now.AddMinutes(5)
-                };
+            var expiryUrlRequest = new GetPreSignedUrlRequest
+            {
+                BucketName = bucketName,
+                Key = file.FileName,
+                Expires = DateTime.Now.AddMinutes(5)
+            };
 
                 var url = _s3Client.GetPreSignedURL(expiryUrlRequest);
-            }
 
             return new UploadFileResponse
             {

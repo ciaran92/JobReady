@@ -7,6 +7,6 @@ namespace Monolith.Domain.Interfaces
 {
     public interface IFilesRepository
     {
-        Task<UploadFileResponse> UploadFiles(string bucketName, IList<IFormFile> files);
+        Task<UploadFileResponse> UploadFiles(string bucketName, IFormFile formFile);
     }
 }
