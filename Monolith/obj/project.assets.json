@@ -2,6 +2,42 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "AWSSDK.Core/3.3.104": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Core.dll": {}
+        }
+      },
+      "AWSSDK.Extensions.NETCore.Setup/3.3.100.1": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.100, 3.4.0)",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.dll": {}
+        }
+      },
+      "AWSSDK.S3/3.3.109": {
+        "type": "package",
+        "dependencies": {
+          "AWSSDK.Core": "[3.3.104, 3.4.0)"
+        },
+        "compile": {
+          "lib/netstandard2.0/AWSSDK.S3.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/AWSSDK.S3.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -3181,6 +3217,35 @@
           }
         }
       },
+      "StructureMap/4.5.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.Collections.Concurrent": "4.0.12",
+          "System.Reflection.Emit.Lightweight": "4.3.0",
+          "System.Reflection.TypeExtensions": "4.1.0",
+          "System.Runtime.Loader": "4.0.0"
+        },
+        "compile": {
+          "lib/netstandard1.5/StructureMap.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/StructureMap.dll": {}
+        }
+      },
+      "StructureMap.Microsoft.DependencyInjection/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
+          "StructureMap": "4.5.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/StructureMap.Microsoft.DependencyInjection.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/StructureMap.Microsoft.DependencyInjection.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -3984,7 +4049,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {}
+          "ref/netstandard1.0/System.Reflection.Emit.Lightweight.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Reflection.Emit.Lightweight.dll": {}
@@ -4129,6 +4194,20 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.Runtime.Loader/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.IO": "4.1.0",
+          "System.Reflection": "4.1.0",
+          "System.Runtime": "4.1.0"
+        },
+        "compile": {
+          "ref/netstandard1.5/System.Runtime.Loader.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.5/System.Runtime.Loader.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -4780,6 +4859,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "AWSSDK.S3": "3.3.109",
           "Microsoft.AspNetCore.Cryptography.KeyDerivation": "2.2.0",
           "Monolith.Domain": "1.0.0"
         },
@@ -4808,6 +4888,110 @@
     }
   },
   "libraries": {
+    "AWSSDK.Core/3.3.104": {
+      "sha512": "1ldqyzqh18tKTFuseBX3YetZk/flCE3fRVOBAUFpJJrt0xqHjMBxMwpMLrnrYaDubHj7f9EPU0TlGgMef1YUSA==",
+      "type": "package",
+      "path": "awssdk.core/3.3.104",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.core.3.3.104.nupkg.sha512",
+        "awssdk.core.nuspec",
+        "lib/MonoAndroid10/AWSSDK.Core.XML",
+        "lib/MonoAndroid10/AWSSDK.Core.dll",
+        "lib/MonoAndroid10/AWSSDK.Core.pdb",
+        "lib/MonoTouch10/AWSSDK.Core.XML",
+        "lib/MonoTouch10/AWSSDK.Core.dll",
+        "lib/Xamarin.Mac20/AWSSDK.Core.XML",
+        "lib/Xamarin.Mac20/AWSSDK.Core.dll",
+        "lib/Xamarin.iOS10/AWSSDK.Core.XML",
+        "lib/Xamarin.iOS10/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.dll",
+        "lib/net35/AWSSDK.Core.pdb",
+        "lib/net35/AWSSDK.Core.xml",
+        "lib/net45/AWSSDK.Core.dll",
+        "lib/net45/AWSSDK.Core.pdb",
+        "lib/net45/AWSSDK.Core.xml",
+        "lib/netstandard1.3/AWSSDK.Core.dll",
+        "lib/netstandard1.3/AWSSDK.Core.pdb",
+        "lib/netstandard1.3/AWSSDK.Core.xml",
+        "lib/netstandard2.0/AWSSDK.Core.dll",
+        "lib/netstandard2.0/AWSSDK.Core.pdb",
+        "lib/netstandard2.0/AWSSDK.Core.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.Core.pdb",
+        "lib/uap/AWSSDK.Core.XML",
+        "lib/uap/AWSSDK.Core.dll",
+        "lib/uap/AWSSDK.Core.pdb",
+        "lib/win8/AWSSDK.Core.XML",
+        "lib/win8/AWSSDK.Core.dll",
+        "lib/win8/AWSSDK.Core.pdb",
+        "lib/wp8/AWSSDK.Core.XML",
+        "lib/wp8/AWSSDK.Core.dll",
+        "lib/wp8/AWSSDK.Core.pdb",
+        "lib/wpa81/AWSSDK.Core.XML",
+        "lib/wpa81/AWSSDK.Core.dll",
+        "lib/wpa81/AWSSDK.Core.pdb",
+        "tools/account-management.ps1"
+      ]
+    },
+    "AWSSDK.Extensions.NETCore.Setup/3.3.100.1": {
+      "sha512": "KrMhRur0x5X8sSkRSVKt7iEwdsMqu8sa5zqTOhaxEw52r/YaqiiRgw0hNcNCObpm2gQAASewlIVfaBitGjHlUw==",
+      "type": "package",
+      "path": "awssdk.extensions.netcore.setup/3.3.100.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "awssdk.extensions.netcore.setup.3.3.100.1.nupkg.sha512",
+        "awssdk.extensions.netcore.setup.nuspec",
+        "lib/netstandard1.3/AWSSDK.Extensions.NETCore.Setup.dll",
+        "lib/netstandard1.3/AWSSDK.Extensions.NETCore.Setup.pdb",
+        "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.dll",
+        "lib/netstandard2.0/AWSSDK.Extensions.NETCore.Setup.pdb"
+      ]
+    },
+    "AWSSDK.S3/3.3.109": {
+      "sha512": "fQ57eas2Z/mtOMKKJWn05KZeitGcFN5Lay81xGIH4OXzIoeqq/tqrN6Zp0wUi0BXppVG+0eCf665xuYtho0HRA==",
+      "type": "package",
+      "path": "awssdk.s3/3.3.109",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/cs/AWSSDK.S3.CodeAnalysis.dll",
+        "awssdk.s3.3.3.109.nupkg.sha512",
+        "awssdk.s3.nuspec",
+        "lib/MonoAndroid10/AWSSDK.S3.XML",
+        "lib/MonoAndroid10/AWSSDK.S3.dll",
+        "lib/MonoTouch10/AWSSDK.S3.XML",
+        "lib/MonoTouch10/AWSSDK.S3.dll",
+        "lib/MonoTouch10/AWSSDK.S3.pdb",
+        "lib/Xamarin.iOS10/AWSSDK.S3.XML",
+        "lib/Xamarin.iOS10/AWSSDK.S3.dll",
+        "lib/net35/AWSSDK.S3.dll",
+        "lib/net35/AWSSDK.S3.pdb",
+        "lib/net35/AWSSDK.S3.xml",
+        "lib/net45/AWSSDK.S3.dll",
+        "lib/net45/AWSSDK.S3.pdb",
+        "lib/net45/AWSSDK.S3.xml",
+        "lib/netstandard1.3/AWSSDK.S3.dll",
+        "lib/netstandard1.3/AWSSDK.S3.pdb",
+        "lib/netstandard1.3/AWSSDK.S3.xml",
+        "lib/netstandard2.0/AWSSDK.S3.dll",
+        "lib/netstandard2.0/AWSSDK.S3.pdb",
+        "lib/netstandard2.0/AWSSDK.S3.xml",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.S3.XML",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.S3.dll",
+        "lib/portable-net45+win8+wpa81+wp8/AWSSDK.S3.pdb",
+        "lib/uap/AWSSDK.S3.XML",
+        "lib/uap/AWSSDK.S3.dll",
+        "lib/uap/AWSSDK.S3.pdb",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
@@ -8535,6 +8719,37 @@
         "version.txt"
       ]
     },
+    "StructureMap/4.5.0": {
+      "sha512": "P7Xsq8IcxUcrXdGusACcyaIIN/PAlo6XvnPOJHzth4tcNlXAd+tqckytKLJcFaLSnwc5rcTtBk95R71xvu6aaA==",
+      "type": "package",
+      "path": "structuremap/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/StructureMap.dll",
+        "lib/net45/StructureMap.xml",
+        "lib/netstandard1.3/StructureMap.dll",
+        "lib/netstandard1.3/StructureMap.xml",
+        "lib/netstandard1.5/StructureMap.dll",
+        "lib/netstandard1.5/StructureMap.xml",
+        "structuremap.4.5.0.nupkg.sha512",
+        "structuremap.nuspec"
+      ]
+    },
+    "StructureMap.Microsoft.DependencyInjection/2.0.0": {
+      "sha512": "spA8Q/BVpng2ACbVpRw+v2qv5zWYGC0M9InYkOEeWPT8bLagoGqX3cs75D9wcFpXXO74W1tIpi2ve1JiMdFztQ==",
+      "type": "package",
+      "path": "structuremap.microsoft.dependencyinjection/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/StructureMap.Microsoft.DependencyInjection.dll",
+        "lib/netstandard2.0/StructureMap.Microsoft.DependencyInjection.pdb",
+        "lib/netstandard2.0/StructureMap.Microsoft.DependencyInjection.xml",
+        "structuremap.microsoft.dependencyinjection.2.0.0.nupkg.sha512",
+        "structuremap.microsoft.dependencyinjection.nuspec"
+      ]
+    },
     "System.AppContext/4.3.0": {
       "sha512": "YGwQXkgwCHQPvMEDwJ8okEve0wrCUToiSe+4Ej/pJUaJN+U0czq+o6hU7v+AzKegnDHxz9I/qj/yksO94x87CA==",
       "type": "package",
@@ -11424,6 +11639,32 @@
         "system.runtime.interopservices.runtimeinformation.nuspec"
       ]
     },
+    "System.Runtime.Loader/4.0.0": {
+      "sha512": "4UN78GOVU/mbDFcXkEWtetJT/sJ0yic2gGk1HSlSpWI0TDf421xnrZTDZnwNBapk1GQeYN7U1lTj/aQB1by6ow==",
+      "type": "package",
+      "path": "system.runtime.loader/4.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/net462/_._",
+        "lib/netstandard1.5/System.Runtime.Loader.dll",
+        "ref/netstandard1.5/System.Runtime.Loader.dll",
+        "ref/netstandard1.5/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/de/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/es/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/fr/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/it/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ja/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ko/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/ru/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/zh-hans/System.Runtime.Loader.xml",
+        "ref/netstandard1.5/zh-hant/System.Runtime.Loader.xml",
+        "system.runtime.loader.4.0.0.nupkg.sha512",
+        "system.runtime.loader.nuspec"
+      ]
+    },
     "System.Runtime.Numerics/4.3.0": {
       "sha512": "1qfHZLab1CGa07ewT+lwJ5dqyYJLEYLRiJGfc0B8d57EFyMgecGpvkNip5PVSxGo4+j9t6bMsxvBfTXqQ6Gcmw==",
       "type": "package",
@@ -13108,6 +13349,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "AWSSDK.Extensions.NETCore.Setup >= 3.3.100.1",
+      "AWSSDK.S3 >= 3.3.109",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.EntityFrameworkCore >= 2.2.6",
@@ -13118,7 +13361,8 @@
       "Monolith.Core >= 1.0.0",
       "Monolith.Domain >= 1.0.0",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 2.2.0",
-      "Npgsql.EntityFrameworkCore.PostgreSQL.Design >= 1.1.0"
+      "Npgsql.EntityFrameworkCore.PostgreSQL.Design >= 1.1.0",
+      "StructureMap.Microsoft.DependencyInjection >= 2.0.0"
     ]
   },
   "packageFolders": {
@@ -13169,6 +13413,14 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "AWSSDK.Extensions.NETCore.Setup": {
+            "target": "Package",
+            "version": "[3.3.100.1, )"
+          },
+          "AWSSDK.S3": {
+            "target": "Package",
+            "version": "[3.3.109, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",
@@ -13211,6 +13463,10 @@
           "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
             "target": "Package",
             "version": "[1.1.0, )"
+          },
+          "StructureMap.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[2.0.0, )"
           }
         },
         "imports": [

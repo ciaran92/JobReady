@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Amazon.S3;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -31,7 +32,7 @@ namespace Monolith
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+            services.AddAWSService<IAmazonS3>(Configuration.GetAWSOptions());
             
             services.AddEntityFrameworkNpgsql().AddDbContext<PrimarydbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("primary_db_conn")));
             
@@ -41,6 +42,8 @@ namespace Monolith
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ITopicRepository, TopicRepository>();
             services.AddScoped<ILectureService, LectureService>();
+            services.AddScoped<IAmazonS3BucketRepository, AmazonS3BucketRepository>();
+            services.AddScoped<IFilesRepository, FilesRepository>();
             
             services.AddAuthentication(GetAuthenticationOptions).AddJwtBearer(GetJwtBearerOptions);
             
