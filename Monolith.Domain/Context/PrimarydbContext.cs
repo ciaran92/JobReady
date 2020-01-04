@@ -1,12 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Monolith.Domain.BusinessObjects;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Monolith.Domain.Context
 {
     public class PrimarydbContext : DbContext
     {
-        
+
         public PrimarydbContext(DbContextOptions<PrimarydbContext> options)
             : base(options)
         {
@@ -47,7 +49,7 @@ namespace Monolith.Domain.Context
                     .HasMaxLength(255);
 
                 entity.Property(e => e.InstructorRating).HasColumnName("instructorrating");
-                
+
                 entity.Property(e => e.IsApproved).HasColumnName("isapproved");
 
                 entity.Property(e => e.LastName)
@@ -57,7 +59,7 @@ namespace Monolith.Domain.Context
                 entity.Property(e => e.Password)
                     .HasColumnName("password")
                     .HasMaxLength(255);
-                
+
                 entity.Property(e => e.Salt)
                     .HasColumnName("salt")
                     .HasMaxLength(128);

@@ -14,10 +14,12 @@ namespace Monolith.Core.Services
     public class UserService : IUserService
     {
         private readonly PrimarydbContext _context;
-        
-        public UserService(PrimarydbContext context)
+        private readonly IAuthService _authService;
+
+        public UserService(PrimarydbContext context, IAuthService authService)
         {
             _context = context;
+            _authService = authService;
         }
         
         public SignUpResponse SignupUser(SignupModel model)
@@ -70,8 +72,9 @@ namespace Monolith.Core.Services
             return new LoginResponse
             {
                 Success = true,
-                Message = "Login Successful"
-            };
+                Message = "Login Successful",
+                JwtToken = _authService.NewJwtToken(user)
+        };
         }
         
 

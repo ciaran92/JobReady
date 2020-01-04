@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Monolith.Domain.BusinessObjects;
 using Monolith.Domain.Interfaces;
 
 namespace Monolith.Core.Services.Authentication
@@ -11,11 +12,12 @@ namespace Monolith.Core.Services.Authentication
     public class AuthService : IAuthService
     {
         // TODO: move key, issuer & audience to appSettings file
-        public string NewJwtToken(string email)
+        public string NewJwtToken(AppUser user)
         {
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Email, email),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(type: "id", user.UserId.ToString())
             };
             
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretkeySuperDoopeSecretNeverBeCracked147468gnvjhfnd"));

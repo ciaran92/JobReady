@@ -1,8 +1,10 @@
-﻿namespace Monolith.Domain.Interfaces
+﻿using Monolith.Domain.BusinessObjects;
+
+namespace Monolith.Domain.Interfaces
 {
     public interface IAuthService
     {
-        string NewJwtToken(string email);
+        string NewJwtToken(AppUser user);
         string NewRefreshToken();
     }
 }
