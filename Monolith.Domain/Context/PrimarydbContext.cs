@@ -23,7 +23,7 @@ namespace Monolith.Domain.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("host=localhost;database=Primarydb;user id=postgres;password=cman4135;");
+               
             }
         }
 
@@ -132,6 +132,19 @@ namespace Monolith.Domain.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("topic_courseid_fkey");
             });
+
+
+            modelBuilder.Entity<AppUserCourse>()
+                .HasKey(auc => new { auc.UserId, auc.CourseId });
+            modelBuilder.Entity<AppUserCourse>()
+                .HasOne(auc => auc.AppUser)
+                .WithMany(au => au.Courses)
+                .HasForeignKey(au => au.UserId);
+            modelBuilder.Entity<AppUserCourse>()
+                .HasOne(auc => auc.Course)
+                .WithMany(c => c.AppUsers)
+                .HasForeignKey(auc => auc.CourseId);
+
         }
     }
 }

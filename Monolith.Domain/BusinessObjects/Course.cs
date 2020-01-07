@@ -18,5 +18,7 @@ namespace Monolith.Domain.BusinessObjects
 
         public virtual AppUser Instructor { get; set; }
         public virtual ICollection<Topic> Topic { get; set; }
+
+        public virtual ICollection<AppUserCourse> AppUsers { get; set; }
     }
 }

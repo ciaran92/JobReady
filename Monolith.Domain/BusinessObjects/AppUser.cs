@@ -21,5 +21,7 @@ namespace Monolith.Domain.BusinessObjects
         public bool IsApproved { get; set; }
 
         public virtual ICollection<Course> Course { get; set; }
+
+        public virtual ICollection<AppUserCourse> Courses { get; set; }
     }
 }
