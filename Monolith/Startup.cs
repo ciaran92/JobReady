@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using Amazon.S3;
 using Microsoft.AspNetCore.Authentication;
@@ -10,12 +11,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Monolith.Configuration;
 using Monolith.Core.Repositories;
 using Monolith.Core.Services;
 using Monolith.Core.Services.Authentication;
 using Monolith.Core.Services.Course;
 using Monolith.Domain.Context;
 using Monolith.Domain.Interfaces;
+using Swashbuckle.AspNetCore.Swagger;
 using ICourseService = Monolith.Domain.Interfaces.ICourseService;
 
 namespace Monolith
@@ -32,6 +35,27 @@ namespace Monolith
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc(name: "v1", new Info { Title = "Example API", Version = "v1" });
+
+                var security = new Dictionary<string, IEnumerable<string>>
+                {
+                    {"Bearer", new string[0]}
+                };
+
+                x.AddSecurityDefinition(name: "Bearer", new ApiKeyScheme
+                {
+                    Description = "Jwt Authorisation header using the bearer scheme",
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey"
+                });
+                x.AddSecurityRequirement(security);
+
+            });
+
             services.AddAWSService<IAmazonS3>(Configuration.GetAWSOptions());
             
             services.AddEntityFrameworkNpgsql().AddDbContext<PrimarydbContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("primary_db_conn")));
@@ -71,7 +95,18 @@ namespace Monolith
             
             app.UseCors("AllowAll");
             app.UseAuthentication();
+            app.UseStaticFiles();
             app.UseHttpsRedirection();
+
+            var swaggerOptions = new Configuration.SwaggerOptions();
+            Configuration.GetSection(nameof(Monolith.Configuration.SwaggerOptions)).Bind(swaggerOptions);
+
+            app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
+            app.UseSwaggerUI(option =>
+            {
+                option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
+            });
+
             app.UseMvc();
         }
 

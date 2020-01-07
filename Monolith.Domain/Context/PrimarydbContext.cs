@@ -1,12 +1,14 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Monolith.Domain.BusinessObjects;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Monolith.Domain.Context
 {
     public class PrimarydbContext : DbContext
     {
-        
+
         public PrimarydbContext(DbContextOptions<PrimarydbContext> options)
             : base(options)
         {
@@ -21,7 +23,7 @@ namespace Monolith.Domain.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseNpgsql("host=localhost;database=Primarydb;user id=postgres;password=cman4135;");
+               
             }
         }
 
@@ -47,7 +49,7 @@ namespace Monolith.Domain.Context
                     .HasMaxLength(255);
 
                 entity.Property(e => e.InstructorRating).HasColumnName("instructorrating");
-                
+
                 entity.Property(e => e.IsApproved).HasColumnName("isapproved");
 
                 entity.Property(e => e.LastName)
@@ -57,7 +59,7 @@ namespace Monolith.Domain.Context
                 entity.Property(e => e.Password)
                     .HasColumnName("password")
                     .HasMaxLength(255);
-                
+
                 entity.Property(e => e.Salt)
                     .HasColumnName("salt")
                     .HasMaxLength(128);
@@ -130,6 +132,19 @@ namespace Monolith.Domain.Context
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("topic_courseid_fkey");
             });
+
+
+            modelBuilder.Entity<AppUserCourse>()
+                .HasKey(auc => new { auc.UserId, auc.CourseId });
+            modelBuilder.Entity<AppUserCourse>()
+                .HasOne(auc => auc.AppUser)
+                .WithMany(au => au.Courses)
+                .HasForeignKey(au => au.UserId);
+            modelBuilder.Entity<AppUserCourse>()
+                .HasOne(auc => auc.Course)
+                .WithMany(c => c.AppUsers)
+                .HasForeignKey(auc => auc.CourseId);
+
         }
     }
 }
