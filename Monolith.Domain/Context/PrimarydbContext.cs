@@ -18,6 +18,7 @@ namespace Monolith.Domain.Context
         public virtual DbSet<Course> Course { get; set; }
         public virtual DbSet<Lecture> Lecture { get; set; }
         public virtual DbSet<Topic> Topic { get; set; }
+        public virtual DbSet<AppUserCourse> AppUserCourse { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -133,17 +134,19 @@ namespace Monolith.Domain.Context
                     .HasConstraintName("topic_courseid_fkey");
             });
 
-
-            modelBuilder.Entity<AppUserCourse>()
+            modelBuilder.Entity<AppUserCourse>(entity => {
+                modelBuilder.Entity<AppUserCourse>()
                 .HasKey(auc => new { auc.UserId, auc.CourseId });
-            modelBuilder.Entity<AppUserCourse>()
-                .HasOne(auc => auc.AppUser)
-                .WithMany(au => au.Courses)
-                .HasForeignKey(au => au.UserId);
-            modelBuilder.Entity<AppUserCourse>()
-                .HasOne(auc => auc.Course)
-                .WithMany(c => c.AppUsers)
-                .HasForeignKey(auc => auc.CourseId);
+                modelBuilder.Entity<AppUserCourse>()
+                    .HasOne(auc => auc.AppUser)
+                    .WithMany(au => au.Courses)
+                    .HasForeignKey(au => au.UserId);
+                modelBuilder.Entity<AppUserCourse>()
+                    .HasOne(auc => auc.Course)
+                    .WithMany(c => c.AppUsers)
+                    .HasForeignKey(auc => auc.CourseId);
+            });
+            
 
         }
     }

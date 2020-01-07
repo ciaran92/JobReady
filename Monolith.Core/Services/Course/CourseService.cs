@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Monolith.Core.Repositories;
 using Monolith.Domain.BusinessObjects;
 using Monolith.Domain.Context;
@@ -102,6 +104,30 @@ namespace Monolith.Core.Services.Course
             UpdateCourseToCourseMapper.Map(course, changes);
 
             return _courseRepository.Save();
+        }
+
+        public async Task<Domain.BusinessObjects.Course> GetCourseByIdAsync(int courseId) 
+        {
+            return await _context.Course.SingleOrDefaultAsync(x => x.CourseId == courseId);
+        }
+
+        public async Task<bool> CreateEnrolmentAsync(AppUserCourse enrolment)
+        {
+            await _context.AddAsync(enrolment);
+            var created = await _context.SaveChangesAsync();
+            return created > 0;
+        }
+
+        public async Task<bool> StudentEnrolledInCourseAsync(int courseId, int userId)
+        {
+            var userExists = await _context.AppUserCourse.SingleOrDefaultAsync(x => x.CourseId == courseId && x.UserId == userId);
+
+            if(userExists == null)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Security.Claims;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,8 @@ using Monolith.Domain.Interfaces;
 using Monolith.Domain.Mappers;
 using Monolith.Domain.Models.Course;
 using Monolith.Helpers;
+using Monolith.Extensions;
+
 
 namespace Monolith.Controllers
 {
@@ -65,6 +68,46 @@ namespace Monolith.Controllers
 
             return Ok(response);
         }
+
+
+        [HttpPost("enrol-course")]
+        public async Task<IActionResult> EnrolInCourse([FromBody] EnrolInCourseModel model)
+        {
+            var courseExists = await _courseService.GetCourseByIdAsync(model.CourseId);
+
+            if (courseExists == null)
+            {
+                return BadRequest(error: new
+                {
+                    error = "Course does not exist"
+                });
+            }
+
+            var enrolment = new AppUserCourse
+            {
+                CourseId = model.CourseId,
+                UserId = Convert.ToInt32(HttpContext.GetUserById())
+            };
+
+            var userIsEnrolledAlready = await _courseService.StudentEnrolledInCourseAsync(enrolment.CourseId, enrolment.UserId);
+
+            if (userIsEnrolledAlready)
+            {
+                return BadRequest(error: new
+                {
+                    error = "Student is already enrolled in this course"
+                });
+            }
+
+            await _courseService.CreateEnrolmentAsync(enrolment);
+
+
+            return Ok(new EnrolInCourseResponse
+            {
+                Success = true
+            });
+        }
+         
 
         [HttpPatch("{courseId}")]
         public IActionResult PartiallyUpdateCourse(int courseId, [FromBody] JsonPatchDocument<CourseForUpdateDto> patchDocument)
