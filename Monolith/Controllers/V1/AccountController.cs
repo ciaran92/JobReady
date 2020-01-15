@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Monolith.Domain.Context;
+using Monolith.Domain.Contracts.V1;
+using Monolith.Domain.Contracts.V1.Requests;
 using Monolith.Domain.Interfaces;
 using Monolith.Domain.Models;
 
-namespace Monolith.Controllers
+namespace Monolith.Controllers.V1
 {
     [Route("api/account")]
     [ApiController]
@@ -19,7 +21,7 @@ namespace Monolith.Controllers
             _authService = authService;
         }
 
-        [HttpPost("register")]
+        [HttpPost(ApiRoutes.Accounts.Register)]
         public IActionResult Register([FromBody] SignupModel model)
         {
             if (!ModelState.IsValid)
@@ -37,14 +39,13 @@ namespace Monolith.Controllers
             return BadRequest(response);
         }
 
-        [HttpPost("login")]
+        [HttpPost(ApiRoutes.Accounts.Login)]
         public IActionResult Login([FromBody] LoginModel model)
         {
             var response = _userService.Login(model);
 
             if (response.Success)
             {
-                //response.JwtToken = _authService.NewJwtToken(model.Email); // moved to userservice
                 return Ok(response);
             }
             

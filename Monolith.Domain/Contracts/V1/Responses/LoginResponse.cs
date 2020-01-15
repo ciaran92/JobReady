@@ -1,4 +1,4 @@
-﻿namespace Monolith.Domain.Models
+﻿namespace Monolith.Domain.Contracts.V1.Responses
 {
     public class LoginResponse
     {

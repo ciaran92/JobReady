@@ -1,4 +1,5 @@
 ﻿using Monolith.Domain.BusinessObjects;
+using Monolith.Domain.Contracts.V1.Requests;
 using Monolith.Domain.Models;
 
 namespace Monolith.Domain.Mappers
