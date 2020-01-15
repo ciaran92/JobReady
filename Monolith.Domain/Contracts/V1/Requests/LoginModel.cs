@@ -1,4 +1,4 @@
-﻿namespace Monolith.Domain.Models
+﻿namespace Monolith.Domain.Contracts.V1.Requests
 {
     public class LoginModel
     {

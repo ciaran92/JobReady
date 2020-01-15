@@ -5,6 +5,8 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Monolith.Domain.Context;
+using Monolith.Domain.Contracts.V1.Requests;
+using Monolith.Domain.Contracts.V1.Responses;
 using Monolith.Domain.Interfaces;
 using Monolith.Domain.Mappers;
 using Monolith.Domain.Models;
