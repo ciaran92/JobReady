@@ -7,7 +7,6 @@ using Monolith.Domain.Models;
 
 namespace Monolith.Controllers.V1
 {
-    [Route("api/account")]
     [ApiController]
     public class AccountController : ControllerBase
     {

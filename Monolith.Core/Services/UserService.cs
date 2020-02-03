@@ -76,6 +76,7 @@ namespace Monolith.Core.Services
                 Success = true,
                 Message = "Login Successful",
                 JwtToken = _authService.NewJwtToken(user)
+                // add refresh token here
         };
         }
         
