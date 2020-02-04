@@ -6,12 +6,18 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Monolith.Domain.BusinessObjects;
 using Monolith.Domain.Interfaces;
+using Monolith.Core.Options;
 
 namespace Monolith.Core.Services.Authentication
 {
     public class AuthService : IAuthService
     {
-        // TODO: move key, issuer & audience to appSettings file
+        private readonly JwtSettings _jwtSettings; 
+
+        public AuthService(JwtSettings jwtSettings)
+        {
+            _jwtSettings = jwtSettings;
+        }
         public string NewJwtToken(AppUser user)
         {
             var claims = new List<Claim>()
@@ -20,14 +26,14 @@ namespace Monolith.Core.Services.Authentication
                 new Claim(type: "id", user.UserId.ToString())
             };
             
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("secretkeySuperDoopeSecretNeverBeCracked147468gnvjhfnd"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.SecurityKey));
             var signInCred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             
             var token = new JwtSecurityToken
             (
-                issuer: "http://localhost:5001",
-                audience: "http://localhost:5001",
-                expires: DateTime.Now.AddMinutes(30),
+                issuer: _jwtSettings.Issuer,
+                audience: _jwtSettings.Audience,
+                expires: DateTime.UtcNow.Add(_jwtSettings.TokenLifeTime),
                 claims: claims,
                 signingCredentials: signInCred
             );

@@ -14,9 +14,9 @@ namespace Monolith.Domain.Contracts.V1
 
         public static class Accounts
         {
-            public const string Login = Base + "/login";
+            public const string Login = Base + "/account/login";
 
-            public const string Register = Base + "/register";
+            public const string Register = Base + "/account/register";
         }
     }
 }
